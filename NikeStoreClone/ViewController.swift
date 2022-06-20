@@ -9,76 +9,76 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
-
+    //MARK: - Properties
+    
+    private let shoesLabel = UILabel()
+    private let shoesImage = UIImageView()
+    private let detailsLabel = UILabel()
+    private let startButton = UIButton()
+    
+   
+    //MARK: - LifeSycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        configureUI()
         
     }
-    func configure() {
-        // MARK: Welcome label
-        view.backgroundColor = .white
-        let welcomeLabel = UILabel()
-        view.addSubview(welcomeLabel)
-        welcomeLabel.text = "Trendy Shoes for \nEvery\nFeet"
-        welcomeLabel.font = UIFont(name: "Helvetica-Bold", size: 40)
-        welcomeLabel.tintColor = .darkGray
-        welcomeLabel.numberOfLines = 0
-        
-        
-        // Label Constraints
-        welcomeLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(30)
-            make.top.equalToSuperview().inset(100)
-        }
-        //MARK: Shoes Image
-            let shoesImage = UIImageView()
-            shoesImage.image = UIImage(named: "img_Nike-Shoe")
-            view.addSubview(shoesImage)
-        
-        // Image Constraints
-            shoesImage.snp.makeConstraints { make in
-                make.top.equalTo(welcomeLabel).inset(150)
-                make.left.equalToSuperview()
-                make.width.equalTo(450)
-                make.height.equalTo(400)
-        }
-            
-        
-        //MARK: Detail label
-        let detailLabel = UILabel()
-        view.addSubview(detailLabel)
-        detailLabel.numberOfLines = 0
-        detailLabel.font = UIFont(name: "Hiragino Sans", size: 15)
-        detailLabel.text = "This is the address you are looking for to\n find the latest fashion and beatiful\n shoes  suitable for everywhere."
-        detailLabel.textColor = .lightGray
-       
-        // Label Constraints
-        detailLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(650)
-            make.left.equalToSuperview().inset(35)
-        }
-        // MARK: Start Button
-        let startButton = UIButton()
-        view.addSubview(startButton)
-        startButton.setTitle("Start", for: .normal)
-        startButton.titleLabel!.font = UIFont(name: "Helvetica-Bold", size: 30)
-        let buttonImage = UIImage(named: "btn_start")
-        startButton.setBackgroundImage(buttonImage, for: .normal)
-      // Button Constraints
-        startButton.snp.makeConstraints { make in
-            make.top.equalTo(detailLabel).inset(80)
-            make.left.equalToSuperview().inset(50)
-            make.width.equalTo(300)
-            make.height.equalTo(60)
-        }
     
+    //MARK: - Selectors
+    
+    @objc func startButtonTapped() {
+        navigationController?.pushViewController(MainTabBarViewController(), animated: true)
         
+    }
+   
+    //MARK: - Helpers
+    private func configureUI() {
+        navigationController?.navigationBar.isHidden = true
+        view.backgroundColor = .white
+        //Shoes Label
+        view.addSubview(shoesLabel)
+        shoesLabel.text = "Trendy Shoes for \nEvery\nFeet"
+        shoesLabel.numberOfLines = 0
+        shoesLabel.font = UIFont(name: "Gill Sans Bold", size: 35)
+        //Constraints
+        shoesLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.safeAreaLayoutGuide.leftAnchor,   paddingTop: 30, paddingLeft: 45)
+        
+        view.addSubview(shoesImage)
+        shoesImage.image = UIImage(named: "img_Nike-Shoe")
+        //Constraints
+        shoesImage.anchor(top: shoesLabel.bottomAnchor, left: view.leftAnchor, width: 450, height: 350)
+        
+        //Details Label
+        view.addSubview(detailsLabel)
+        detailsLabel.text = "This is address you are looking for to\nfind the latest fashion and the most useful\nshoes suitable for everywhere"
+        detailsLabel.font = UIFont(name: "Geneva", size: 10)
+        detailsLabel.numberOfLines = 0
+        detailsLabel.textColor = .lightGray
+        //Constrait
+        detailsLabel.anchor(top: shoesImage.bottomAnchor, left: shoesLabel.leftAnchor, paddingTop: 20)
+        
+        //Start Button
+        view.addSubview(startButton)
+        startButton.setTitle("START", for: .normal)
+        startButton.setBackgroundImage(UIImage(named: "btn_start"), for: .normal)
+        startButton.titleLabel?.font = UIFont(name: "Gill Sans Bold", size: 20)
+        startButton.layer.cornerRadius = 15
+        startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
+        //Constraints
+        startButton.anchor(top: detailsLabel.bottomAnchor, left: detailsLabel.leftAnchor, paddingTop: 50,  width: 320, height: 60)
         
         
         
     }
+    
+    
 
-
+   
+        
+        
+        
+        
 }
+
+
 
