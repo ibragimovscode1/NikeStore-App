@@ -92,6 +92,7 @@ class Onboarding: UIViewController {
         stackView.addArrangedSubview(startButton)
         startButton.setBackgroundImage(UIImage(named: "btn_start"), for: .normal)
         startButton.layer.cornerRadius = 30
+        startButton.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
       //  startButton.backgroundColor = .white
         NSLayoutConstraint.activate([
 //            startButton.topAnchor.constraint(equalTo: detailsLabel.bottomAnchor, constant: 22),
@@ -113,8 +114,8 @@ class Onboarding: UIViewController {
 
    
         
-        
-        
+ 
+
         
 
 
